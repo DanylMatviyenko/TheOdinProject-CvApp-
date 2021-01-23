@@ -1,0 +1,49 @@
+@import "./nullstyle";
+@import "./varibles";
+@import "./mixins";
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 940px;
+}
+.h1-text {
+  @include h1-text;
+  padding-left: 20px;
+}
+.h2-text {
+  @include h2-text;
+}
+.plain-text {
+  font-family: $font-family-plain-text;
+  color: $font-color-plain-text;
+  font-size: $font-size-plain-text;
+}
+.header {
+  padding: 51px 0;
+  &__user-field {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    &_margin_20px {
+      margin-top: 20px;
+    }
+  }
+}
+.edit-field-input {
+  display: inline-block;
+  width: 100%;
+  border: 2px solid #000;
+  &_size_l {
+    @include h1-text;
+  }
+  &_size_m {
+    @include h2-text;
+    text-align: center;
+  }
+}
+.contacts-list {
+  &__item {
+
+  }
+}

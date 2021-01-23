@@ -1,4 +1,4 @@
-export interface IEditInput {
+export interface IEditInputProps {
     isEditing: boolean;
     fieldName: string;
     inputValue: string;

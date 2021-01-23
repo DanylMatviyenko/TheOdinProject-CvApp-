@@ -1,0 +1,17 @@
+@import "./varibles";
+@mixin h1-text {
+  font-size: $font-size-header-1;
+  font-family: $font-family-header-1;
+  color: $font-color-headers;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  text-align: center;
+}
+@mixin h2-text {
+  font-size: $font-size-header-2;
+  font-family: $font-family-header-2;
+  color: $font-color-headers;
+  text-transform: uppercase;
+  font-weight: $font-weight-header-2;
+  letter-spacing: 6px;
+}

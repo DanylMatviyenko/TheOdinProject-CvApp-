@@ -1,8 +1,7 @@
-export interface IAppState {
-    userName: IUserFieldProperties;
-    userProfession: IUserFieldProperties;
-}
-interface IUserFieldProperties {
-    value: string;
-    isEditing: boolean;
+export enum userFields {
+    NAME = 'userName',
+    PROFESSION = 'userProfession',
+    PHONE = 'userPhone',
+    EMAIL = 'userEmail',
+    CITY = 'userLocation'
 }
