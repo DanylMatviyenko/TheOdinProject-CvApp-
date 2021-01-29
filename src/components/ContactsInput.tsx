@@ -1,11 +1,9 @@
 import * as React from "react";
-import { IContactInput, IContactState } from 'models/contacts';
-import { userFields } from 'models/user';
 
 const classNames = require('classNames');
 
-export class ContactInput extends React.Component<IContactInput> {
-    readonly state: IContactState = {
+export class ContactInput extends React.Component {
+    /*readonly state: IContactState = {
         inputValue: this.props.inputValue,
         isValid: false
     }
@@ -45,5 +43,5 @@ export class ContactInput extends React.Component<IContactInput> {
             )
         }
         return null;
-    }
+    }*/
 }

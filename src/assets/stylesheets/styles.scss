@@ -8,11 +8,26 @@
   max-width: 940px;
 }
 .h1-text {
-  @include h1-text;
+  font-size: $font-size-header-1;
+  font-family: $font-family-header-1;
+  color: $font-color-headers;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  text-align: center;
+}
+.h1 {
   padding-left: 20px;
 }
 .h2-text {
-  @include h2-text;
+  font-size: $font-size-header-2;
+  font-family: $font-family-header-2;
+  color: $font-color-headers;
+  text-transform: uppercase;
+  font-weight: $font-weight-header-2;
+  letter-spacing: 6px;
+  &_align_center {
+    text-align: center;
+  }
 }
 .plain-text {
   font-family: $font-family-plain-text;
@@ -32,18 +47,96 @@
 }
 .edit-field-input {
   display: inline-block;
-  width: 100%;
   border: 2px solid #000;
   &_size_l {
-    @include h1-text;
+    width: 100%;
+    @extend .h1-text;
   }
   &_size_m {
-    @include h2-text;
+    width: 100%;
+    @extend .h2-text;
+  }
+  &_size_s {
+    margin-left: 13px;
+    width: 170px;
+    padding: 2px 0 2px 10px;
+    @extend .plain-text;
+  }
+  &_text-align_center {
     text-align: center;
   }
+  &_border-color_success {
+    border-color: $border-color-input-success;
+  }
+  &_border-color_failure {
+    border-color: $border-color-input-failure;
+  }
+}
+.contacts {
+  padding-right: 15px;
+  &__contacts-list {
+    padding-left: 10px;
+    margin-top: 20px;
+  }
+}
+.side-container {
+  max-width: 400px;
 }
 .contacts-list {
   &__item {
-
+    position: relative;
+    align-items: center;
+    display: flex;
+    margin-top: 10px;
+    overflow: hidden;
+    &:first-child {
+      margin-top: 0;
+    }
+    &_size_l:before {
+      content: '...';
+      position: absolute;
+      top: 4px;
+      left: 375px;
+    }
+  }
+  &__description-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $bg-color-contact-icons;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+  &__description-icon {
+    fill: $color-contact-icons;
+    height: 16px;
+  }
+  &__item-info {
+    margin-left: 13px;
+  }
+  &__save-button {
+    margin-left: 10px;
+  }
+}
+.save-button {
+  color: $color-content-save-button;
+  background-color: $bg-color-save-button;
+  border-radius: 3px;
+  padding: 2px 7px;
+  display: flex;
+  align-items: center;
+  font-family: $font-family-plain-text;
+  font-size: 12px;
+  transition: background-color .4s ease-in-out;
+  &__save-icon {
+    cursor: pointer;
+    max-width: 12px;
+    max-height: 12px;
+    fill: $color-content-save-button;
+    margin-right: 3px;
+  }
+  &:hover {
+    background-color: #6B6B6B;
   }
 }

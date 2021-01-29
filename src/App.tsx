@@ -1,21 +1,22 @@
 import * as React from 'react';
-import { IAppState } from './models/app';
-import { userFields } from './models/user';
-//import { EditPropertyInput } from './components/EditPropertyInput';
-//import { Contacts } from './components/Contacts';
+import { IRequiredFields } from './models/userHeader';
+import { userFields } from './models/userFields';
+import {Contacts} from './components/Contacts';
+
 const classNames = require('classnames');
 
+//create small functional components for header and contacts section
 class App extends React.Component {
-  readonly state: IAppState = {
+  readonly state: IRequiredFields = {
       [userFields.NAME]: 'emma watson',
+      [userFields.PROFESSION]: 'your professional title',
       isFieldEditing: {
           [userFields.NAME]: false,
-          [userFields.PROFESSION]: false
-      },
-      [userFields.PROFESSION]: 'your professional title'
+          [userFields.PROFESSION]: false,
+      }
   }
 
-  toggleEditing = (fieldName: string): void => {
+  startEditing = (fieldName: string): void => {
       this.setState({
           isFieldEditing: {
               [fieldName]: true
@@ -47,13 +48,18 @@ class App extends React.Component {
         'edit-field-input',
         {
             'edit-field-input_size_l': fieldName === userFields.NAME,
-            'edit-field-input_size_m': fieldName === userFields.PROFESSION
+            'edit-field-input_size_m': fieldName === userFields.PROFESSION,
+            'edit-field-input_text-align_center': fieldName === userFields.PROFESSION
         }
     );
   }
 
   render() {
-      const { userName, userProfession, isFieldEditing }  = this.state;
+      const {
+          userName,
+          userProfession,
+          isFieldEditing
+      }  = this.state;
     return (
         <div className="wrapper">
             <header className="header">
@@ -65,16 +71,17 @@ class App extends React.Component {
                                     value={ userName }
                                     onChange={ this.onInputChange }
                                     onBlur={ this.onInputBlur }
-                                    autoFocus={ true }/>) :
+                                    autoFocus={ true }
+                                    maxLength={ 100 }/>) :
                             <h1 className="h1-text h1"
                                 onClick={
-                                    this.toggleEditing.bind(this, userFields.NAME)
+                                    this.startEditing.bind(this, userFields.NAME)
                                 }>{ userName }</h1>
                         }
                     </div>
                     <div className="header__user-field header__user-field_margin_20px">
                         { isFieldEditing[userFields.PROFESSION] ?
-                            (<input className={ this.calculateInputClass(userProfession) }
+                            (<input className={ this.calculateInputClass(userFields.PROFESSION) }
                                     name={ userFields.PROFESSION }
                                     value={ userProfession }
                                     onChange={ this.onInputChange }
@@ -82,7 +89,7 @@ class App extends React.Component {
                                     autoFocus={ true }/>) :
                             <h2 className="h2-text h2 h2-text_align_center"
                                 onClick={
-                                    this.toggleEditing.bind(this, userFields.PROFESSION)
+                                    this.startEditing.bind(this, userFields.PROFESSION)
                                 }>{ userProfession }</h2>
 
                         }
@@ -91,8 +98,9 @@ class App extends React.Component {
             </header>
             <main className="main">
                 <div className="container">
-                    <aside className="aside">
-                    </aside>
+                    <div className="side-container">
+                        <Contacts />
+                    </div>
                 </div>
             </main>
         </div>

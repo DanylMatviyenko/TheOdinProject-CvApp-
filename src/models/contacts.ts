@@ -1,18 +1,13 @@
-import { userFields } from './user';
+import { userFields } from './userFields';
 
 export interface IContactsState {
-    [userFields.PHONE]: string;
-    [userFields.EMAIL]: string;
-    [userFields.CITY]: string;
+    [userFields.PHONE]:  IStateItem,
+    [userFields.EMAIL]: IStateItem,
+    [userFields.CITY]: IStateItem
 }
-export interface IContactInput {
-    isEditing: boolean;
-    fieldName: string;
-    inputValue: string;
-    editHandler: (fieldName: string, fieldValue: string) => void;
-    pattern: RegExp;
+export interface IStateItem {
+    isValid: boolean,
+    isEditing: boolean,
+    value: string
 }
-export interface IContactState {
-    inputValue: string;
-    isValid: boolean;
-}
+export type contactFields = userFields.PHONE | userFields.EMAIL | userFields.CITY;

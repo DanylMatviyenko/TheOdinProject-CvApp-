@@ -1,11 +1,11 @@
-import { userFields } from './user';
+import { userFields } from './userFields';
 
-export interface IAppState {
+export interface IRequiredFields {
     [userFields.NAME]: string;
     [userFields.PROFESSION]: string;
-    isFieldEditing: IHeaderEditing;
+    isFieldEditing: IIsFieldEditing;
 }
-interface IHeaderEditing {
+interface IIsFieldEditing {
     [userFields.NAME]: boolean;
     [userFields.PROFESSION]: boolean;
 }
