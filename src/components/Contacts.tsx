@@ -2,6 +2,7 @@ import React from 'react';
 import {userFields} from '../models/userFields';
 import {contactFields, IContactsState, IStateItem} from '../models/contacts';
 import {Icon} from 'ui/Icon';
+import { cutUserInput } from '../utils/manipulateString';
 
 const classNames = require('classnames');
 
@@ -26,7 +27,7 @@ export class Contacts extends React.Component {
 
     onInputChange = (event:  React.ChangeEvent<HTMLInputElement>) => {
         const field = event.target;
-        const isValid = !event.target.validity.patternMismatch;
+        const isValid = !event.target.validity.patternMismatch && field.value.length > 0;
         this.setState({
             [field.name]: {
                 value: field.value,
@@ -40,6 +41,7 @@ export class Contacts extends React.Component {
         return classNames(
             'edit-field-input',
             'edit-field-input_size_s',
+            'edit-field-input_margin-left_13px',
             {
                 'edit-field-input_border-color_success': isValid,
                 'edit-field-input_border-color_failure': !isValid,
@@ -66,11 +68,6 @@ export class Contacts extends React.Component {
         this.toggleEditing(fieldName);
     }
 
-    cutUserInput = (inputText: string) => {
-        const LIMIT = 30;
-        return inputText.length > LIMIT ? inputText.slice(0, LIMIT) + '...' : inputText;
-    }
-
     render() {
         const { userPhone, userEmail, userLocation } = this.state;
         const {
@@ -78,11 +75,10 @@ export class Contacts extends React.Component {
             toggleEditing,
             calculateInputClasses,
             onSaveButtonClick,
-            cutUserInput
         } = this;
         return (
             <section className="contacts">
-                <h2 className="h2-text">Contacts</h2>
+                <h2 className="h2-text h2 h2_main-sections-layout h2_padding-top_0">Contacts</h2>
                 <ul className="contacts-list contacts__contacts-list">
                     <li className="contacts-list__item">
                         <div className="contacts-list__description-icon-wrapper">
@@ -97,16 +93,18 @@ export class Contacts extends React.Component {
                                     maxLength={10}
                                     onChange={ onInputChange }
                                     value={ userPhone.value }
-                                    autoFocus={ true }/>
-                                <button className="save-button contacts-list__save-button"
+                                    autoFocus={ true }
+                                    />
+                                <button className="action-button contacts-list__action-button"
                                         type="button"
                                         onClick={ onSaveButtonClick.bind(this, userFields.PHONE, userPhone.isValid) }>
-                                    <Icon className="save-button__save-icon" id="save"/>
+                                    <Icon className="action-button__action-icon" id="save"/>
                                     Save
                                 </button>
                             </>) :
                             <p  className="contacts-list__item-info plain-text"
-                                onClick={ toggleEditing.bind(this, userFields.PHONE) }>{ cutUserInput(userPhone.value) }</p>
+                                onClick={ toggleEditing.bind(this, userFields.PHONE) }>
+                                { cutUserInput(userPhone.value, 40) }</p>
                         }
                     </li>
                     <li className="contacts-list__item">
@@ -115,7 +113,7 @@ export class Contacts extends React.Component {
                         </div>
                         { userEmail.isEditing ?
                             (<>
-                                <input type="tel"
+                                <input type="email"
                                        className={ calculateInputClasses(userEmail) }
                                        name={ userFields.EMAIL }
                                        pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
@@ -123,15 +121,15 @@ export class Contacts extends React.Component {
                                        onChange={ onInputChange }
                                        value={ userEmail.value }
                                        autoFocus={ true }/>
-                                <button className="save-button contacts-list__save-button"
+                                <button className="action-button contacts-list__action-button"
                                         type="button"
                                         onClick={ onSaveButtonClick.bind(this, userFields.EMAIL, userEmail.isValid) }>
-                                    <Icon className="save-button__save-icon" id="save"/>
+                                    <Icon className="action-button__action-icon" id="save"/>
                                     Save
                                 </button>
                             </>) :
                                 <p className="contacts-list__item-info plain-text"
-                                   onClick={ toggleEditing.bind(this, userFields.EMAIL) }>{ cutUserInput(userEmail.value) }</p>
+                                   onClick={ toggleEditing.bind(this, userFields.EMAIL) }>{ cutUserInput(userEmail.value, 40) }</p>
                         }
                     </li>
                     <li className="contacts-list__item">
@@ -140,7 +138,7 @@ export class Contacts extends React.Component {
                         </div>
                         { userLocation.isEditing ?
                             (<>
-                                <input type="tel"
+                                <input type="text"
                                        className={ calculateInputClasses(userLocation) }
                                        name={ userFields.CITY }
                                        pattern="[A-Z]{1}[a-z]+, ?[A-Z]{1}[a-z]+"
@@ -148,15 +146,15 @@ export class Contacts extends React.Component {
                                        onChange={ onInputChange }
                                        value={ userLocation.value }
                                        autoFocus={ true }/>
-                                <button className="save-button contacts-list__save-button"
+                                <button className="action-button contacts-list__action-button"
                                         type="button"
                                         onClick={ onSaveButtonClick.bind(this, userFields.CITY, userLocation.isValid) }>
-                                    <Icon className="save-button__save-icon" id="save"/>
+                                    <Icon className="action-button__action-icon" id="save"/>
                                     Save
                                 </button>
                             </>) :
                             <p className="contacts-list__item-info plain-text"
-                               onClick={ toggleEditing.bind(this, userFields.CITY) }>{ cutUserInput(userLocation.value) }</p>
+                               onClick={ toggleEditing.bind(this, userFields.CITY) }>{ cutUserInput(userLocation.value, 40) }</p>
                         }
                     </li>
                 </ul>

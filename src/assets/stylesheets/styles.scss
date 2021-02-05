@@ -29,10 +29,26 @@
     text-align: center;
   }
 }
+.h2 {
+  &_main-sections-layout {
+    padding: 20px 0;
+  }
+  &_padding-top_0 {
+    padding-top: 0;
+  }
+}
 .plain-text {
   font-family: $font-family-plain-text;
   color: $font-color-plain-text;
   font-size: $font-size-plain-text;
+}
+.main {
+  &__container {
+    display: flex;
+  }
+}
+.main-container {
+  width: 57.45%;
 }
 .header {
   padding: 51px 0;
@@ -57,10 +73,12 @@
     @extend .h2-text;
   }
   &_size_s {
-    margin-left: 13px;
     width: 170px;
     padding: 2px 0 2px 10px;
     @extend .plain-text;
+  }
+  &_margin-left_13px {
+    margin-left: 13px;
   }
   &_text-align_center {
     text-align: center;
@@ -73,14 +91,13 @@
   }
 }
 .contacts {
-  padding-right: 15px;
   &__contacts-list {
     padding-left: 10px;
-    margin-top: 20px;
   }
 }
 .side-container {
-  max-width: 400px;
+  width: 42.55%;
+  padding-right: 15px;
 }
 .contacts-list {
   &__item {
@@ -88,7 +105,6 @@
     align-items: center;
     display: flex;
     margin-top: 10px;
-    overflow: hidden;
     &:first-child {
       margin-top: 0;
     }
@@ -115,13 +131,13 @@
   &__item-info {
     margin-left: 13px;
   }
-  &__save-button {
+  &__action-button {
     margin-left: 10px;
   }
 }
-.save-button {
-  color: $color-content-save-button;
-  background-color: $bg-color-save-button;
+.action-button {
+  color: $color-content-action-button;
+  background-color: $bg-color-action-button;
   border-radius: 3px;
   padding: 2px 7px;
   display: flex;
@@ -129,14 +145,82 @@
   font-family: $font-family-plain-text;
   font-size: 12px;
   transition: background-color .4s ease-in-out;
-  &__save-icon {
+  &__action-icon {
     cursor: pointer;
     max-width: 12px;
     max-height: 12px;
-    fill: $color-content-save-button;
+    fill: $color-content-action-button;
     margin-right: 3px;
   }
   &:hover {
     background-color: #6B6B6B;
+  }
+  &_margin-left_13px {
+    margin-left: 13px;
+  }
+}
+.education {
+  &__action-button {
+    margin-top: 15px;
+  }
+  &__add-education-form {
+    @extend .contacts__contacts-list;
+    margin-top: 15px;
+  }
+}
+.add-education-form {
+  &_display_none {
+    display: none;
+  }
+  &__action-button {
+    margin-top: 10px;
+  }
+  &__edit-field-input {
+    margin-top: 5px;
+  }
+  &__label {
+    margin-top: 8px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+.control-buttons {
+  display: flex;
+  width: 100%;
+}
+.education-list {
+  &__item {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:first-child {
+      margin-top: 10px;
+    }
+  }
+}
+.icon-button {
+  width: 30px;
+  background-color: transparent;
+  height: 30px;
+  &__action-icon {
+    width: 100%;
+    height: 100%;
+    fill: $color-content-icon-button;
+  }
+}
+.fields-list {
+  @extend .contacts__contacts-list;
+  &__item {
+    margin-top: 7px;
+  }
+  &__item:first-child {
+    margin-top: 0;
+  }
+}
+.experience {
+  &__h2 {
+    padding-bottom: 20px;
   }
 }

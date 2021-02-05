@@ -2,6 +2,8 @@ import * as React from 'react';
 import { IRequiredFields } from './models/userHeader';
 import { userFields } from './models/userFields';
 import {Contacts} from './components/Contacts';
+import {Education} from './components/Education';
+import {Experience} from './components/Experience';
 
 const classNames = require('classnames');
 
@@ -97,9 +99,13 @@ class App extends React.Component {
                 </div>
             </header>
             <main className="main">
-                <div className="container">
+                <div className="container main__container">
                     <div className="side-container">
                         <Contacts />
+                        <Education/>
+                    </div>
+                    <div className="main-container">
+                        <Experience />
                     </div>
                 </div>
             </main>
